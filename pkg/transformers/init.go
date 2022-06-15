@@ -1,4 +1,4 @@
-package transformer
+package transformers
 
 func init() {
 	InitRestTransformerInstance()
