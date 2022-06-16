@@ -28,7 +28,7 @@ func NewRestAPIError(httpStatus int, code int, message string, entities []string
 }
 
 func (e *RestAPIError) Error() string {
-	return fmt.Sprintf("An API Error occured: Code: %d, Messaage: %s, ErrorEntities: %v, RootCause: %v", e.Code, e.Message, e.ErrorEntities, e.RootCause)
+	return fmt.Sprintf("API ERROR: {Code: %d, Messaage: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
 }
 
 func AppendEntitiesToErrMsg(message string, entities []string) string {
@@ -40,45 +40,45 @@ func AppendEntitiesToErrMsg(message string, entities []string) string {
 }
 
 func NewRestAPIErrRequired(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgRequired, entities)
-	return NewRestAPIError(http.StatusBadRequest, c.ApiErrCodeRequired, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgRequired, entities)
+	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeRequired, message, entities, rootCause)
 }
 
 func NewRestAPIErrInvalidFormat(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgInvalidFormat, entities)
-	return NewRestAPIError(http.StatusBadRequest, c.ApiErrCodeInvalidFormat, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgInvalidFormat, entities)
+	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeInvalidFormat, message, entities, rootCause)
 }
 
 func NewRestAPIErrNotAcceptedValue(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgNotAcceptedValue, entities)
-	return NewRestAPIError(http.StatusBadRequest, c.ApiErrCodeNotAcceptedValue, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgNotAcceptedValue, entities)
+	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeNotAcceptedValue, message, entities, rootCause)
 }
 
 func NewRestAPIErrOutOfRange(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgOutOfRange, entities)
-	return NewRestAPIError(http.StatusBadRequest, c.ApiErrCodeOutOfRange, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgOutOfRange, entities)
+	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeOutOfRange, message, entities, rootCause)
 }
 
 func NewRestAPIErrUnauthenticated(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgUnauthenticated, entities)
-	return NewRestAPIError(http.StatusUnauthorized, c.ApiErrCodeUnauthenticated, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgUnauthenticated, entities)
+	return NewRestAPIError(http.StatusUnauthorized, c.ClientErrCodeUnauthenticated, message, entities, rootCause)
 }
 
 func NewRestAPIErrNotFound(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgNotFound, entities)
-	return NewRestAPIError(http.StatusNotFound, c.ApiErrCodeNotFound, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgNotFound, entities)
+	return NewRestAPIError(http.StatusNotFound, c.ClientErrCodeNotFound, message, entities, rootCause)
 }
 
 func NewRestAPIErrDuplicate(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgDuplicate, entities)
-	return NewRestAPIError(http.StatusConflict, c.ApiErrCodeDuplicate, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgDuplicate, entities)
+	return NewRestAPIError(http.StatusConflict, c.ClientErrCodeDuplicate, message, entities, rootCause)
 }
 
 func NewRestAPIErrAlreadyExits(rootCause error, entities ...string) *RestAPIError {
-	message := AppendEntitiesToErrMsg(c.ApiErrMsgAlreadyExists, entities)
-	return NewRestAPIError(http.StatusConflict, c.ApiErrCodeAlreadyExists, message, entities, rootCause)
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgAlreadyExists, entities)
+	return NewRestAPIError(http.StatusConflict, c.ClientErrCodeAlreadyExists, message, entities, rootCause)
 }
 
 func NewRestAPIErrInternal(rootCause error, entities ...string) *RestAPIError {
-	return NewRestAPIError(http.StatusInternalServerError, c.ApiErrCodeInternal, c.ApiErrMsgInternal, entities, rootCause)
+	return NewRestAPIError(http.StatusInternalServerError, c.ClientErrCodeInternal, c.ClientErrMsgInternal, entities, rootCause)
 }

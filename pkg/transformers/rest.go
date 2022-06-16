@@ -15,21 +15,21 @@ import (
 type IRestTransformer interface {
 	DomainErrToRestAPIErr(domainErr *errors.DomainError) *errors.RestAPIError
 	ValidationErrToRestAPIErr(err error) *errors.RestAPIError
-	RegisterTransformFunc(domainErrCode int, transformFunc restTransformFunc)
+	RegisterTransformFunc(domainErrCode string, transformFunc restTransformFunc)
 }
 
 type restTransformFunc func(rootCause error, entities ...string) *errors.RestAPIError
 
 type restTransformer struct {
-	mapping map[int]restTransformFunc
+	mapping map[string]restTransformFunc
 }
 
 var restTransformerInstance *restTransformer
 
-func InitRestTransformerInstance() {
+func initRestTransformerInstance() {
 	if restTransformerInstance == nil {
 		restTransformerInstance = &restTransformer{}
-		restTransformerInstance.mapping = map[int]restTransformFunc{}
+		restTransformerInstance.mapping = map[string]restTransformFunc{}
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeRequired, errors.NewRestAPIErrRequired)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeNotAcceptedValue, errors.NewRestAPIErrNotAcceptedValue)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeOutOfRange, errors.NewRestAPIErrOutOfRange)
@@ -38,7 +38,7 @@ func InitRestTransformerInstance() {
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeNotFound, errors.NewRestAPIErrNotFound)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeDuplicate, errors.NewRestAPIErrDuplicate)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeAlreadyExists, errors.NewRestAPIErrAlreadyExits)
-		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeInternal, errors.NewRestAPIErrInternal)
+		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnknown, errors.NewRestAPIErrInternal)
 	}
 }
 
@@ -69,12 +69,12 @@ func (t *restTransformer) DomainErrToRestAPIErr(domainErr *errors.DomainError) *
 	if f == nil {
 		return errors.NewRestAPIErrInternal(fmt.Errorf("can not transform error, DomainError: %v", domainErr))
 	}
-	return f(domainErr.RootCause, domainErr.ErrorEntities...)
+	return f(domainErr, domainErr.ErrorEntities...)
 }
 
 // RegisterTransformFunc is used to add new function to transform DomainError to RestAPIError
 // if the domainErrCode is already registered, the old transform function will be overridden
-func (t *restTransformer) RegisterTransformFunc(domainErrCode int, function restTransformFunc) {
+func (t *restTransformer) RegisterTransformFunc(domainErrCode string, function restTransformFunc) {
 	t.mapping[domainErrCode] = function
 }
 
