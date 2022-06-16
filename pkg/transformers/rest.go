@@ -1,7 +1,12 @@
 package transformers
 
 import (
+	"encoding/json"
+	errs "errors"
 	"fmt"
+	"strings"
+
+	"github.com/go-playground/validator/v10"
 
 	c "github.com/KyberNetwork/kyberswap-error/pkg/constants"
 	"github.com/KyberNetwork/kyberswap-error/pkg/errors"
@@ -9,6 +14,7 @@ import (
 
 type IRestTransformer interface {
 	DomainErrToRestAPIErr(domainErr *errors.DomainError) *errors.RestAPIError
+	ValidationErrToRestAPIErr(err error) *errors.RestAPIError
 	RegisterTransformFunc(domainErrCode int, transformFunc restTransformFunc)
 }
 
@@ -40,6 +46,23 @@ func RestTransformerInstance() IRestTransformer {
 	return restTransformerInstance
 }
 
+// ValidationErrToRestAPIErr transforms ValidationError to RestAPIError
+// this function will be used when bind JSON request to DTO in gin framework
+func (t *restTransformer) ValidationErrToRestAPIErr(err error) *errors.RestAPIError {
+	var validationErrs validator.ValidationErrors
+	var unmarshalTypeErr *json.UnmarshalTypeError
+	if errs.As(err, &validationErrs) {
+		validationErr := validationErrs[0]
+		return apiErrForTag(validationErr.Tag(), err, validationErr.Field())
+	}
+	if errs.As(err, &unmarshalTypeErr) {
+		field := unmarshalTypeErr.Field
+		fieldArr := strings.Split(field, ".")
+		return errors.NewRestAPIErrInvalidFormat(err, fieldArr[len(fieldArr)-1])
+	}
+	return errors.NewRestAPIErrInternal(err)
+}
+
 // DomainErrToRestAPIErr transforms DomainError to RestAPIError
 func (t *restTransformer) DomainErrToRestAPIErr(domainErr *errors.DomainError) *errors.RestAPIError {
 	f := t.mapping[domainErr.Code]
@@ -53,4 +76,18 @@ func (t *restTransformer) DomainErrToRestAPIErr(domainErr *errors.DomainError) *
 // if the domainErrCode is already registered, the old transform function will be overridden
 func (t *restTransformer) RegisterTransformFunc(domainErrCode int, function restTransformFunc) {
 	t.mapping[domainErrCode] = function
+}
+
+// apiErrForTag return RestAPIError which corresponds to the validation tag
+func apiErrForTag(tag string, err error, fields ...string) *errors.RestAPIError {
+	switch tag {
+	case "required":
+		return errors.NewRestAPIErrRequired(err, fields...)
+	case "oneof":
+		return errors.NewRestAPIErrNotAcceptedValue(err, fields...)
+	case "min", "max":
+		return errors.NewRestAPIErrOutOfRange(err, fields...)
+	default:
+		return errors.NewRestAPIErrInternal(err)
+	}
 }

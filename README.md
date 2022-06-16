@@ -113,3 +113,6 @@ func main() {
   - Each error should have a unique error code. Otherwise, it can lead to unexpected results when transforming `DomainError` to `RESTAPIError`. So You should not define your custom error code as one of the predefined error codes in "kyberswap-error". The list of those predefined error codes can be found at https://www.notion.so/kybernetwork/API-Standards-proposal-draft-e8d8bf2dc5f647e89d2bf1b5f0ef8bdf
   - The error code should contain information about HTTP Status. It makes the error code more meaningful and makes it easier to recognize which `RestAPIError` a `DomainError` should be transformed to
   - The domain error code is not required to be the same as the API error code. But they should be the same 
+
+### For gin framework
+- This lib provides the function `ValidationErrToRestAPIErr(err error)` which can be used when binding and validating the request. This function just handles these tags: `required`, `oneof`, `min`, `max`. Feel free to contribute more by making PRs.
