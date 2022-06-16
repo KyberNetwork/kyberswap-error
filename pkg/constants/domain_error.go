@@ -1,30 +1,30 @@
 package constants
 
 const (
-	DomainErrCodeRequired = 4000
-	DomainErrMsgRequired  = "Missing required fields"
+	DomainErrCodeRequired = "DOMAIN:REQUIRED"
+	DomainErrMsgRequired  = "Domain error: Missing required fields"
 
-	DomainErrCodeNotAcceptedValue = 4001
-	DomainErrMsgNotAcceptedValue  = "Input is not in the accepted values"
+	DomainErrCodeNotAcceptedValue = "DOMAIN:NOT_ACCEPTED_VALUE"
+	DomainErrMsgNotAcceptedValue  = "Domain error: Input is not in the accepted values"
 
-	DomainErrCodeOutOfRange = 4002
-	DomainErrMsgOutOfRange  = "Input is out of range"
+	DomainErrCodeOutOfRange = "DOMAIN:OUT_OF_RANGE"
+	DomainErrMsgOutOfRange  = "Domain error: Input is out of range"
 
-	DomainErrCodeInvalidFormat = 4003
-	DomainErrMsgInvalidFormat  = "Input has an invalid format"
+	DomainErrCodeInvalidFormat = "DOMAIN:INVALID_FORMAT"
+	DomainErrMsgInvalidFormat  = "Domain error: Input has an invalid format"
 
-	DomainErrCodeUnauthenticated = 4010
-	DomainErrMsgUnauthenticated  = "Unauthenticated"
+	DomainErrCodeUnauthenticated = "DOMAIN:UNAUTHENTICATED"
+	DomainErrMsgUnauthenticated  = "Domain error: Unauthenticated"
 
-	DomainErrCodeNotFound = 4040
-	DomainErrMsgNotFound  = "Not found"
+	DomainErrCodeNotFound = "DOMAIN:NOT_FOUND"
+	DomainErrMsgNotFound  = "Domain error: Not found"
 
-	DomainErrCodeDuplicate = 4090
-	DomainErrMsgDuplicate  = "Duplicate data"
+	DomainErrCodeDuplicate = "DOMAIN:DUPLICATE"
+	DomainErrMsgDuplicate  = "Domain error: Duplicate data"
 
-	DomainErrCodeAlreadyExists = 4091
-	DomainErrMsgAlreadyExists  = "Data already exists"
+	DomainErrCodeAlreadyExists = "DOMAIN:ALREADY_EXISTS"
+	DomainErrMsgAlreadyExists  = "Domain error: Data already exists"
 
-	DomainErrCodeInternal = 5000
-	DomainErrMsgInternal  = "Internal Server Error"
+	DomainErrCodeUnknown = "DOMAIN:UNKNOWN"
+	DomainErrMsgUnknown  = "Domain error: Unknown Domain Error"
 )

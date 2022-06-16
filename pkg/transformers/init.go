@@ -1,5 +1,6 @@
 package transformers
 
 func init() {
-	InitRestTransformerInstance()
+	initRestTransformerInstance()
+	initDomainTransformerInstance()
 }

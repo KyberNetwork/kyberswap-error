@@ -7,13 +7,13 @@ import (
 )
 
 type DomainError struct {
-	Code          int
+	Code          string
 	Message       string
 	ErrorEntities []string
 	RootCause     error
 }
 
-func NewDomainError(code int, message string, entities []string, rootCause error) *DomainError {
+func NewDomainError(code string, message string, entities []string, rootCause error) *DomainError {
 	return &DomainError{
 		Code:          code,
 		Message:       message,
@@ -23,7 +23,7 @@ func NewDomainError(code int, message string, entities []string, rootCause error
 }
 
 func (e *DomainError) Error() string {
-	return fmt.Sprintf("An Domain Error occured: Code: %d, Messaage: %s, ErrorEntities: %v, RootCause: %v", e.Code, e.Message, e.ErrorEntities, e.RootCause)
+	return fmt.Sprintf("DOMAIN ERROR: {Code: %s, Messaage: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
 }
 
 func NewDomainErrorRequired(rootCause error, entities ...string) *DomainError {
@@ -58,6 +58,6 @@ func NewDomainErrorAlreadyExits(rootCause error, entities ...string) *DomainErro
 	return NewDomainError(c.DomainErrCodeAlreadyExists, c.DomainErrMsgAlreadyExists, entities, rootCause)
 }
 
-func NewDomainErrorInternal(rootCause error) *DomainError {
-	return NewDomainError(c.DomainErrCodeInternal, c.DomainErrMsgInternal, []string{}, rootCause)
+func NewDomainErrorUnknown(rootCause error, entities ...string) *DomainError {
+	return NewDomainError(c.DomainErrCodeUnknown, c.DomainErrMsgUnknown, entities, rootCause)
 }
