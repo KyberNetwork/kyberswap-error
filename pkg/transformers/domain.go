@@ -25,14 +25,14 @@ func initDomainTransformerInstance() {
 		domainTransformerInstance = &domainTransformer{}
 		domainTransformerInstance.mapping = map[string]domainTransformFunc{}
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBConnect, errors.NewDomainErrorUnknown)
-		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBNotFound, errors.NewDomainErrorUnknown)
+		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBNotFound, errors.NewDomainErrorNotFound)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBSelect, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBInsert, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBUpdate, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBDelete, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBUnknown, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisConnect, errors.NewDomainErrorUnknown)
-		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisNotFound, errors.NewDomainErrorUnknown)
+		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisNotFound, errors.NewDomainErrorNotFound)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisGet, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisSet, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisUnknown, errors.NewDomainErrorUnknown)
