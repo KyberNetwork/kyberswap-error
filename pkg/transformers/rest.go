@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	errs "errors"
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/go-playground/validator/v10"
@@ -51,6 +52,8 @@ func RestTransformerInstance() IRestTransformer {
 func (t *restTransformer) ValidationErrToRestAPIErr(err error) *errors.RestAPIError {
 	var validationErrs validator.ValidationErrors
 	var unmarshalTypeErr *json.UnmarshalTypeError
+	var jsonSynTaxErr *json.SyntaxError
+	var numErr *strconv.NumError
 	if errs.As(err, &validationErrs) {
 		validationErr := validationErrs[0]
 		return apiErrForTag(validationErr.Tag(), err, validationErr.Field())
@@ -59,6 +62,12 @@ func (t *restTransformer) ValidationErrToRestAPIErr(err error) *errors.RestAPIEr
 		field := unmarshalTypeErr.Field
 		fieldArr := strings.Split(field, ".")
 		return errors.NewRestAPIErrInvalidFormat(err, fieldArr[len(fieldArr)-1])
+	}
+	if errs.As(err, &jsonSynTaxErr) {
+		return errors.NewRestAPIErrInvalidFormat(err)
+	}
+	if errs.As(err, &numErr) {
+		return errors.NewRestAPIErrInvalidFormat(err)
 	}
 	return errors.NewRestAPIErrInternal(err)
 }
