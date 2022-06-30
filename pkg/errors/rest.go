@@ -49,6 +49,11 @@ func NewRestAPIErrInvalidFormat(rootCause error, entities ...string) *RestAPIErr
 	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeInvalidFormat, message, entities, rootCause)
 }
 
+func NewRestAPIErrInvalid(rootCause error, entities ...string) *RestAPIError {
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgInvalid, entities)
+	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeInvalid, message, entities, rootCause)
+}
+
 func NewRestAPIErrNotAcceptedValue(rootCause error, entities ...string) *RestAPIError {
 	message := AppendEntitiesToErrMsg(c.ClientErrMsgNotAcceptedValue, entities)
 	return NewRestAPIError(http.StatusBadRequest, c.ClientErrCodeNotAcceptedValue, message, entities, rootCause)

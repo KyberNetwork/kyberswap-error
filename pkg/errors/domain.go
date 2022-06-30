@@ -34,6 +34,10 @@ func NewDomainErrorInvalidFormat(rootCause error, entities ...string) *DomainErr
 	return NewDomainError(c.DomainErrCodeInvalidFormat, c.DomainErrMsgInvalidFormat, entities, rootCause)
 }
 
+func NewDomainErrorInvalid(rootCause error, entities ...string) *DomainError {
+	return NewDomainError(c.DomainErrCodeInvalid, c.DomainErrMsgInvalid, entities, rootCause)
+}
+
 func NewDomainErrorNotAcceptedValue(rootCause error, entities ...string) *DomainError {
 	return NewDomainError(c.DomainErrCodeNotAcceptedValue, c.DomainErrMsgNotAcceptedValue, entities, rootCause)
 }

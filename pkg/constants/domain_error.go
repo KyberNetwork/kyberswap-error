@@ -13,6 +13,9 @@ const (
 	DomainErrCodeInvalidFormat = "DOMAIN:INVALID_FORMAT"
 	DomainErrMsgInvalidFormat  = "Domain error: Input has an invalid format"
 
+	DomainErrCodeInvalid = "DOMAIN:INVALID"
+	DomainErrMsgInvalid  = "Domain error: Input is invalid "
+
 	DomainErrCodeUnauthenticated = "DOMAIN:UNAUTHENTICATED"
 	DomainErrMsgUnauthenticated  = "Domain error: Unauthenticated"
 
