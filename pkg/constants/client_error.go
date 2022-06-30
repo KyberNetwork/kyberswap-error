@@ -18,6 +18,9 @@ const (
 	ClientErrCodeInvalidFormat = 4003
 	ClientErrMsgInvalidFormat  = "Input has an invalid format"
 
+	ClientErrCodeInvalid = 4004
+	ClientErrMsgInvalid  = "Input is invalid"
+
 	//HTTP 401 - Unauthorized
 	ClientErrCodeUnauthenticated = 4010
 	ClientErrMsgUnauthenticated  = "Unauthenticated"
