@@ -23,7 +23,7 @@ func NewDomainError(code string, message string, entities []string, rootCause er
 }
 
 func (e *DomainError) Error() string {
-	return fmt.Sprintf("DOMAIN ERROR: {Code: %s, Messaage: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
+	return fmt.Sprintf("DOMAIN ERROR: {Code: %s, Message: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
 }
 
 func NewDomainErrorRequired(rootCause error, entities ...string) *DomainError {

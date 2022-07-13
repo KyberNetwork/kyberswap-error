@@ -28,7 +28,7 @@ func NewRestAPIError(httpStatus int, code int, message string, entities []string
 }
 
 func (e *RestAPIError) Error() string {
-	return fmt.Sprintf("API ERROR: {Code: %d, Messaage: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
+	return fmt.Sprintf("API ERROR: {Code: %d, Message: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
 }
 
 func AppendEntitiesToErrMsg(message string, entities []string) string {

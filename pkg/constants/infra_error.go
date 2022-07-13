@@ -42,4 +42,13 @@ const (
 
 	InfraErrCodeRPCUnknown = "INFRA:RPC:UNKNOWN"
 	InfraErrMsgRPCUnknown  = "Infra error: Unknown RPC error"
+
+	InfraErrCodeElsConnect = "INFRA:ELS:CONNECT"
+	InfraErrMsgElsConnect  = "Infra error: Failed to connect to Els"
+
+	InfraErrCodeElsUnknown = "INFRA:ELS:UNKNOWN"
+	InfraErrMsgElsUnknown  = "Infra error: Unknown Els error"
+
+	InfraErrCodeElsNotFound = "INFRA:ELS:NOT_FOUND"
+	InfraErrMsgElsNotFound  = "Infra error: Not found resource in Els"
 )
