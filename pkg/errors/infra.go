@@ -23,7 +23,7 @@ func NewInfraError(code string, message string, entities []string, rootCause err
 }
 
 func (e *InfraError) Error() string {
-	return fmt.Sprintf("INFRA ERROR: {Code: %s, Messaage: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
+	return fmt.Sprintf("INFRA ERROR: {Code: %s, Message: %s, ErrorEntities: %v, RootCause: %v}", e.Code, e.Message, e.ErrorEntities, e.RootCause)
 }
 
 func NewInfraErrorDBConnect(rootCause error, entities ...string) *InfraError {
@@ -80,4 +80,16 @@ func NewInfraErrorHTTPUnknown(rootCause error, entities ...string) *InfraError {
 
 func NewInfraErrorRPCUnknown(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeRPCUnknown, c.InfraErrMsgRPCUnknown, entities, rootCause)
+}
+
+func NewInfraErrorElsConnect(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeElsConnect, c.InfraErrMsgElsConnect, entities, rootCause)
+}
+
+func NewInfraErrorElsUnknown(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeElsUnknown, c.InfraErrMsgElsUnknown, entities, rootCause)
+}
+
+func NewInfraErrorElsNotFound(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeElsNotFound, c.InfraErrMsgElsNotFound, entities, rootCause)
 }
