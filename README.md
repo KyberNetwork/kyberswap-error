@@ -128,4 +128,4 @@ func main() {
   - Registering new `InfraError` is done in a similar way
 
 ### For gin framework
-- This lib provides the function `ValidationErrToRestAPIErr(err error)` which can be used when binding and validating the request.
+- This lib provides the function `ValidationErrToRestAPIErr(err error)` which can be used when binding and validating the request. aaaaaaaaa
