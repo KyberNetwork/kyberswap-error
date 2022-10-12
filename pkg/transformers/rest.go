@@ -44,11 +44,11 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnknown, errors.NewRestAPIErrInternal)
 
 		restTransformerInstance.validationErr = map[string]restTransformFunc{}
-		restTransformerInstance.validationErr["required"] = errors.NewRestAPIErrRequired
-		restTransformerInstance.validationErr["oneof"] = errors.NewRestAPIErrNotAcceptedValue
-		restTransformerInstance.validationErr["min"] = errors.NewRestAPIErrOutOfRange
-		restTransformerInstance.validationErr["max"] = errors.NewRestAPIErrOutOfRange
-		restTransformerInstance.validationErr["numeric"] = errors.NewRestAPIErrInvalidFormat
+		restTransformerInstance.RegisterValidationTag("required", errors.NewRestAPIErrRequired)
+		restTransformerInstance.RegisterValidationTag("oneof", errors.NewRestAPIErrNotAcceptedValue)
+		restTransformerInstance.RegisterValidationTag("min", errors.NewRestAPIErrOutOfRange)
+		restTransformerInstance.RegisterValidationTag("max", errors.NewRestAPIErrOutOfRange)
+		restTransformerInstance.RegisterValidationTag("numeric", errors.NewRestAPIErrInvalidFormat)
 	}
 }
 
