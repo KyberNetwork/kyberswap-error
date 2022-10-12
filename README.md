@@ -22,6 +22,12 @@ $ go mod tidy
 $ go mod vendor
 ```
 
+## Update to latest version
+```
+$ go get -u github.com/KyberNetwork/kyberswap-error
+$ go mod vendor
+```
+
 ## How to use
 
 ### `InfraError`
@@ -122,4 +128,4 @@ func main() {
   - Registering new `InfraError` is done in a similar way
 
 ### For gin framework
-- This lib provides the function `ValidationErrToRestAPIErr(err error)` which can be used when binding and validating the request. This function just handles these tags: `required`, `oneof`, `min`, `max`. Feel free to contribute more by making PRs.
+- This lib provides the function `ValidationErrToRestAPIErr(err error)` which can be used when binding and validating the request.
