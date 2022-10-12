@@ -17,6 +17,7 @@ type IRestTransformer interface {
 	DomainErrToRestAPIErr(domainErr *errors.DomainError) *errors.RestAPIError
 	ValidationErrToRestAPIErr(err error) *errors.RestAPIError
 	RegisterTransformFunc(domainErrCode string, transformFunc restTransformFunc)
+	RegisterValidationTag(tag string, function restTransformFunc)
 }
 
 type restTransformFunc func(rootCause error, entities ...string) *errors.RestAPIError
@@ -30,8 +31,11 @@ var restTransformerInstance *restTransformer
 
 func initRestTransformerInstance() {
 	if restTransformerInstance == nil {
-		restTransformerInstance = &restTransformer{}
-		restTransformerInstance.mapping = map[string]restTransformFunc{}
+		restTransformerInstance = &restTransformer{
+			mapping:       make(map[string]restTransformFunc),
+			validationErr: make(map[string]restTransformFunc),
+		}
+
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeRequired, errors.NewRestAPIErrRequired)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeNotAcceptedValue, errors.NewRestAPIErrNotAcceptedValue)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeOutOfRange, errors.NewRestAPIErrOutOfRange)
@@ -43,7 +47,6 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeAlreadyExists, errors.NewRestAPIErrAlreadyExits)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnknown, errors.NewRestAPIErrInternal)
 
-		restTransformerInstance.validationErr = map[string]restTransformFunc{}
 		restTransformerInstance.RegisterValidationTag("required", errors.NewRestAPIErrRequired)
 		restTransformerInstance.RegisterValidationTag("oneof", errors.NewRestAPIErrNotAcceptedValue)
 		restTransformerInstance.RegisterValidationTag("min", errors.NewRestAPIErrOutOfRange)
