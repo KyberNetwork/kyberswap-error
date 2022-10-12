@@ -22,7 +22,8 @@ type IRestTransformer interface {
 type restTransformFunc func(rootCause error, entities ...string) *errors.RestAPIError
 
 type restTransformer struct {
-	mapping map[string]restTransformFunc
+	mapping       map[string]restTransformFunc
+	validationErr map[string]restTransformFunc
 }
 
 var restTransformerInstance *restTransformer
@@ -41,6 +42,13 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeDuplicate, errors.NewRestAPIErrDuplicate)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeAlreadyExists, errors.NewRestAPIErrAlreadyExits)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnknown, errors.NewRestAPIErrInternal)
+
+		restTransformerInstance.validationErr = map[string]restTransformFunc{}
+		restTransformerInstance.RegisterValidationTag("required", errors.NewRestAPIErrRequired)
+		restTransformerInstance.RegisterValidationTag("oneof", errors.NewRestAPIErrNotAcceptedValue)
+		restTransformerInstance.RegisterValidationTag("min", errors.NewRestAPIErrOutOfRange)
+		restTransformerInstance.RegisterValidationTag("max", errors.NewRestAPIErrOutOfRange)
+		restTransformerInstance.RegisterValidationTag("numeric", errors.NewRestAPIErrInvalidFormat)
 	}
 }
 
@@ -57,7 +65,7 @@ func (t *restTransformer) ValidationErrToRestAPIErr(err error) *errors.RestAPIEr
 	var numErr *strconv.NumError
 	if errs.As(err, &validationErrs) {
 		validationErr := validationErrs[0]
-		return apiErrForTag(validationErr.Tag(), err, validationErr.Field())
+		return t.apiErrForTag(validationErr.Tag(), err, validationErr.Field())
 	}
 	if errs.As(err, &unmarshalTypeErr) {
 		field := unmarshalTypeErr.Field
@@ -88,16 +96,17 @@ func (t *restTransformer) RegisterTransformFunc(domainErrCode string, function r
 	t.mapping[domainErrCode] = function
 }
 
+// RegisterValidationTag is used to define new validation tag and respective API error
+// if the validation tag is already registered, the old respective API error will be overridden
+func (t *restTransformer) RegisterValidationTag(tag string, function restTransformFunc) {
+	t.validationErr[tag] = function
+}
+
 // apiErrForTag return RestAPIError which corresponds to the validation tag
-func apiErrForTag(tag string, err error, fields ...string) *errors.RestAPIError {
-	switch tag {
-	case "required":
-		return errors.NewRestAPIErrRequired(err, fields...)
-	case "oneof":
-		return errors.NewRestAPIErrNotAcceptedValue(err, fields...)
-	case "min", "max":
-		return errors.NewRestAPIErrOutOfRange(err, fields...)
-	default:
+func (t *restTransformer) apiErrForTag(tag string, err error, fields ...string) *errors.RestAPIError {
+	f := t.validationErr[tag]
+	if f == nil {
 		return errors.NewRestAPIErrInternal(err)
 	}
+	return f(err, fields...)
 }
