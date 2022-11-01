@@ -42,6 +42,7 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeInvalidFormat, errors.NewRestAPIErrInvalidFormat)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeInvalid, errors.NewRestAPIErrInvalid)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnauthenticated, errors.NewRestAPIErrUnauthenticated)
+		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeUnauthorized, errors.NewRestAPIErrUnauthorized)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeNotFound, errors.NewRestAPIErrNotFound)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeDuplicate, errors.NewRestAPIErrDuplicate)
 		restTransformerInstance.RegisterTransformFunc(c.DomainErrCodeAlreadyExists, errors.NewRestAPIErrAlreadyExits)

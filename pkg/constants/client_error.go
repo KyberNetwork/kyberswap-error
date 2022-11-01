@@ -25,6 +25,9 @@ const (
 	ClientErrCodeUnauthenticated = 4010
 	ClientErrMsgUnauthenticated  = "Unauthenticated"
 
+	ClientErrCodeUnauthorized = 4011
+	ClientErrMsgUnauthorized  = "Unauthorized"
+
 	//HTTP 404 - Not found
 	ClientErrCodeNotFound = 4040
 	ClientErrMsgNotFound  = "Not found"
