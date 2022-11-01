@@ -38,7 +38,7 @@ func initDomainTransformerInstance() {
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisUnknown, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeHTTPUnknown, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeHTTPNotFound, errors.NewDomainErrorNotFound)
-		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeHTTPUnauthorized, errors.NewDomainErrorNotFound)
+		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeHTTPUnauthorized, errors.NewDomainErrorUnauthorized)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRPCUnknown, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeElsConnect, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeElsUnknown, errors.NewDomainErrorUnknown)
