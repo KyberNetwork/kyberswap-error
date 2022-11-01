@@ -69,6 +69,11 @@ func NewRestAPIErrUnauthenticated(rootCause error, entities ...string) *RestAPIE
 	return NewRestAPIError(http.StatusUnauthorized, c.ClientErrCodeUnauthenticated, message, entities, rootCause)
 }
 
+func NewRestAPIErrUnauthorized(rootCause error, entities ...string) *RestAPIError {
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgUnauthorized, entities)
+	return NewRestAPIError(http.StatusForbidden, c.ClientErrCodeUnauthorized, message, entities, rootCause)
+}
+
 func NewRestAPIErrNotFound(rootCause error, entities ...string) *RestAPIError {
 	message := AppendEntitiesToErrMsg(c.ClientErrMsgNotFound, entities)
 	return NewRestAPIError(http.StatusNotFound, c.ClientErrCodeNotFound, message, entities, rootCause)

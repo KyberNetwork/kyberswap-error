@@ -21,9 +21,13 @@ const (
 	ClientErrCodeInvalid = 4004
 	ClientErrMsgInvalid  = "Input is invalid"
 
-	//HTTP 401 - Unauthorized
+	//HTTP 401 - Unauthenticated
 	ClientErrCodeUnauthenticated = 4010
 	ClientErrMsgUnauthenticated  = "Unauthenticated"
+
+	//HTTP 403 - Unauthorized
+	ClientErrCodeUnauthorized = 4030
+	ClientErrMsgUnauthorized  = "Unauthorized"
 
 	//HTTP 404 - Not found
 	ClientErrCodeNotFound = 4040

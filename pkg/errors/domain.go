@@ -50,6 +50,10 @@ func NewDomainErrorUnauthenticated(rootCause error, entities ...string) *DomainE
 	return NewDomainError(c.DomainErrCodeUnauthenticated, c.DomainErrMsgUnauthenticated, entities, rootCause)
 }
 
+func NewDomainErrorUnauthorized(rootCause error, entities ...string) *DomainError {
+	return NewDomainError(c.DomainErrCodeUnauthorized, c.DomainErrMsgUnauthorized, entities, rootCause)
+}
+
 func NewDomainErrorNotFound(rootCause error, entities ...string) *DomainError {
 	return NewDomainError(c.DomainErrCodeNotFound, c.DomainErrMsgNotFound, entities, rootCause)
 }

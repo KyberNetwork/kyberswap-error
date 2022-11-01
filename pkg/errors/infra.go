@@ -82,6 +82,10 @@ func NewInfraErrorHTTPNotFound(rootCause error, entities ...string) *InfraError 
 	return NewInfraError(c.InfraErrCodeHTTPNotFound, c.InfraErrMsgHTTPNotFound, entities, rootCause)
 }
 
+func NewInfraErrorHTTPUnauthorized(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPUnauthorized, c.InfraErrMsgHTTPUnauthorized, entities, rootCause)
+}
+
 func NewInfraErrorRPCUnknown(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeRPCUnknown, c.InfraErrMsgRPCUnknown, entities, rootCause)
 }

@@ -43,6 +43,9 @@ const (
 	InfraErrCodeHTTPNotFound = "INFRA:HTTP:NOTFOUND"
 	InfraErrMsgHTTPNotFound  = "Infra error: NotFound HTTP error"
 
+	InfraErrCodeHTTPUnauthorized = "INFRA:HTTP:UNAUTHORIZED"
+	InfraErrMsgHTTPUnauthorized  = "Infra error: Unauthorized HTTP error"
+
 	InfraErrCodeRPCUnknown = "INFRA:RPC:UNKNOWN"
 	InfraErrMsgRPCUnknown  = "Infra error: Unknown RPC error"
 

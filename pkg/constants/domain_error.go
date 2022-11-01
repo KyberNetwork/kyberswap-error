@@ -19,6 +19,9 @@ const (
 	DomainErrCodeUnauthenticated = "DOMAIN:UNAUTHENTICATED"
 	DomainErrMsgUnauthenticated  = "Domain error: Unauthenticated"
 
+	DomainErrCodeUnauthorized = "DOMAIN:UNAUTHORIZED"
+	DomainErrMsgUnauthorized  = "Domain error: Unauthorized"
+
 	DomainErrCodeNotFound = "DOMAIN:NOT_FOUND"
 	DomainErrMsgNotFound  = "Domain error: Not found"
 
