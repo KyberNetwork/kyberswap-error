@@ -53,6 +53,7 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterValidationTag("min", errors.NewRestAPIErrOutOfRange)
 		restTransformerInstance.RegisterValidationTag("max", errors.NewRestAPIErrOutOfRange)
 		restTransformerInstance.RegisterValidationTag("numeric", errors.NewRestAPIErrInvalidFormat)
+		restTransformerInstance.RegisterValidationTag("unique", errors.NewRestAPIErrDuplicate)
 	}
 }
 
