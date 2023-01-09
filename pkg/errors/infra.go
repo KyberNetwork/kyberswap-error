@@ -74,16 +74,48 @@ func NewInfraErrorRedisUnknown(rootCause error, entities ...string) *InfraError 
 	return NewInfraError(c.InfraErrCodeRedisUnknown, c.InfraErrMsgRedisUnknown, entities, rootCause)
 }
 
-func NewInfraErrorHTTPUnknown(rootCause error, entities ...string) *InfraError {
-	return NewInfraError(c.InfraErrCodeHTTPUnknown, c.InfraErrMsgHTTPUnknown, entities, rootCause)
+func NewInfraErrorHTTPRequired(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPRequired, c.InfraErrMsgHTTPRequired, entities, rootCause)
+}
+
+func NewInfraErrorHTTPNotAcceptedValue(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPNotAcceptedValue, c.InfraErrMsgHTTPNotAcceptedValue, entities, rootCause)
+}
+
+func NewInfraErrorHTTPOutOfRange(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPOutOfRange, c.InfraErrMsgHTTPOutOfRange, entities, rootCause)
+}
+
+func NewInfraErrorHTTPInvalidFormat(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPInvalidFormat, c.InfraErrMsgHTTPInvalidFormat, entities, rootCause)
+}
+
+func NewInfraErrorHTTPInvalid(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPInvalid, c.InfraErrMsgHTTPInvalid, entities, rootCause)
+}
+
+func NewInfraErrorHTTPUnauthenticated(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPUnauthenticated, c.InfraErrMsgHTTPUnauthenticated, entities, rootCause)
+}
+
+func NewInfraErrorHTTPUnauthorized(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPUnauthorized, c.InfraErrMsgHTTPUnauthorized, entities, rootCause)
 }
 
 func NewInfraErrorHTTPNotFound(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeHTTPNotFound, c.InfraErrMsgHTTPNotFound, entities, rootCause)
 }
 
-func NewInfraErrorHTTPUnauthorized(rootCause error, entities ...string) *InfraError {
-	return NewInfraError(c.InfraErrCodeHTTPUnauthorized, c.InfraErrMsgHTTPUnauthorized, entities, rootCause)
+func NewInfraErrorHTTPDuplicate(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPDuplicate, c.InfraErrMsgHTTPDuplicate, entities, rootCause)
+}
+
+func NewInfraErrorHTTPAlreadyExists(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPAlreadyExists, c.InfraErrMsgHTTPAlreadyExists, entities, rootCause)
+}
+
+func NewInfraErrorHTTPUnknown(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeHTTPUnknown, c.InfraErrMsgHTTPUnknown, entities, rootCause)
 }
 
 func NewInfraErrorRPCUnknown(rootCause error, entities ...string) *InfraError {

@@ -37,14 +37,38 @@ const (
 	InfraErrCodeRedisUnknown = "INFRA:REDIS:UNKNOWN"
 	InfraErrMsgRedisUnknown  = "Infra error: Unknown redis error"
 
-	InfraErrCodeHTTPUnknown = "INFRA:HTTP:UNKNOWN"
-	InfraErrMsgHTTPUnknown  = "Infra error: Unknown HTTP error"
+	InfraErrCodeHTTPRequired = "INFRA:HTTP:REQUIRED"
+	InfraErrMsgHTTPRequired  = "Infra error: Missing required fields when calling HTTP error"
+
+	InfraErrCodeHTTPNotAcceptedValue = "INFRA:HTTP:NOT_ACCEPTED_VALUE"
+	InfraErrMsgHTTPNotAcceptedValue  = "Infra error: Input is not in accepted value when calling HTTP error"
+
+	InfraErrCodeHTTPOutOfRange = "INFRA:HTTP:OUT_OF_RANGE"
+	InfraErrMsgHTTPOutOfRange  = "Infra error: Input is out of range when calling HTTP error"
+
+	InfraErrCodeHTTPInvalidFormat = "INFRA:HTTP:INVALID_FORMAT"
+	InfraErrMsgHTTPInvalidFormat  = "Infra error: Input is invalid format when calling HTTP error"
+
+	InfraErrCodeHTTPInvalid = "INFRA:HTTP:INVALID"
+	InfraErrMsgHTTPInvalid  = "Infra error: Input is invalid when calling HTTP error"
+
+	InfraErrCodeHTTPUnauthenticated = "INFRA:HTTP:UNAUTHENTICATED"
+	InfraErrMsgHTTPUnauthenticated  = "Infra error: Unauthenticated HTTP error"
+
+	InfraErrCodeHTTPUnauthorized = "INFRA:HTTP:UNAUTHORIZED"
+	InfraErrMsgHTTPUnauthorized  = "Infra error: Unauthorized HTTP error"
 
 	InfraErrCodeHTTPNotFound = "INFRA:HTTP:NOTFOUND"
 	InfraErrMsgHTTPNotFound  = "Infra error: NotFound HTTP error"
 
-	InfraErrCodeHTTPUnauthorized = "INFRA:HTTP:UNAUTHORIZED"
-	InfraErrMsgHTTPUnauthorized  = "Infra error: Unauthorized HTTP error"
+	InfraErrCodeHTTPDuplicate = "INFRA:HTTP:DUPLICATE"
+	InfraErrMsgHTTPDuplicate  = "Infra error: Input is duplicated when calling HTTP error"
+
+	InfraErrCodeHTTPAlreadyExists = "INFRA:HTTP:ALREADY_EXISTS"
+	InfraErrMsgHTTPAlreadyExists  = "Infra error: Input already exists when calling HTTP error"
+
+	InfraErrCodeHTTPUnknown = "INFRA:HTTP:UNKNOWN"
+	InfraErrMsgHTTPUnknown  = "Infra error: Unknown HTTP error"
 
 	InfraErrCodeRPCUnknown = "INFRA:RPC:UNKNOWN"
 	InfraErrMsgRPCUnknown  = "Infra error: Unknown RPC error"
