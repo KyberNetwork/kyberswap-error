@@ -56,6 +56,7 @@ func initRestTransformerInstance() {
 		restTransformerInstance.RegisterValidationTag("unique", errors.NewRestAPIErrDuplicate)
 		restTransformerInstance.RegisterValidationTag("hexadecimal", errors.NewRestAPIErrInvalidFormat)
 		restTransformerInstance.RegisterValidationTag("email", errors.NewRestAPIErrInvalidFormat)
+		restTransformerInstance.RegisterValidationTag("url", errors.NewRestAPIErrInvalidFormat)
 	}
 }
 
