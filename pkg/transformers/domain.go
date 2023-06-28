@@ -31,6 +31,7 @@ func initDomainTransformerInstance() {
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBUpdate, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBDelete, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBUnknown, errors.NewDomainErrorUnknown)
+		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeDBDuplicatedKey, errors.NewDomainErrorDuplicate)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisConnect, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisNotFound, errors.NewDomainErrorNotFound)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeRedisGet, errors.NewDomainErrorUnknown)

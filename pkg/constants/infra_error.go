@@ -22,6 +22,9 @@ const (
 	InfraErrCodeDBUnknown = "INFRA:DATABASE:UNKNOWN"
 	InfraErrMsgDBUnknown  = "Infra error: Unknown database error"
 
+	InfraErrCodeDBDuplicatedKey = "INFRA:DATABASE:DUPLICATED_KEY"
+	InfraErrMsgDBDuplicatedKey  = "Infra error: Duplicated key in database"
+
 	InfraErrCodeRedisConnect = "INFRA:REDIS:CONNECT"
 	InfraErrMsgRedisConnect  = "Infra error: Failed to connect to Redis"
 
@@ -81,4 +84,7 @@ const (
 
 	InfraErrCodeElsNotFound = "INFRA:ELS:NOT_FOUND"
 	InfraErrMsgElsNotFound  = "Infra error: Not found resource in Els"
+
+	InfraErrCodeUnknown = "INFRA:UNKNOWN"
+	InfraErrMsgUnknown  = "Infra error: Unknown error"
 )
