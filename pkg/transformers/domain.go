@@ -52,6 +52,7 @@ func initDomainTransformerInstance() {
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeElsConnect, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeElsUnknown, errors.NewDomainErrorUnknown)
 		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeElsNotFound, errors.NewDomainErrorNotFound)
+		domainTransformerInstance.RegisterTransformFunc(c.InfraErrCodeUnknown, errors.NewDomainErrorUnknown)
 	}
 }
 
