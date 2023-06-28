@@ -54,6 +54,10 @@ func NewInfraErrorDBUnknown(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeDBUnknown, c.InfraErrMsgDBUnknown, entities, rootCause)
 }
 
+func NewInfraErrorDBDuplicatedKey(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeDBDuplicatedKey, c.InfraErrMsgDBDuplicatedKey, entities, rootCause)
+}
+
 func NewInfraErrorRedisConnect(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeRedisConnect, c.InfraErrMsgRedisConnect, entities, rootCause)
 }
@@ -132,4 +136,8 @@ func NewInfraErrorElsUnknown(rootCause error, entities ...string) *InfraError {
 
 func NewInfraErrorElsNotFound(rootCause error, entities ...string) *InfraError {
 	return NewInfraError(c.InfraErrCodeElsNotFound, c.InfraErrMsgElsNotFound, entities, rootCause)
+}
+
+func NewInfraErrorUnknown(rootCause error, entities ...string) *InfraError {
+	return NewInfraError(c.InfraErrCodeUnknown, c.InfraErrMsgUnknown, entities, rootCause)
 }
