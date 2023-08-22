@@ -89,6 +89,11 @@ func NewRestAPIErrAlreadyExits(rootCause error, entities ...string) *RestAPIErro
 	return NewRestAPIError(http.StatusConflict, c.ClientErrCodeAlreadyExists, message, entities, rootCause)
 }
 
+func NewRestAPIErrTooManyRequests(rootCause error, entities ...string) *RestAPIError {
+	message := AppendEntitiesToErrMsg(c.ClientErrMsgTooManyRequests, entities)
+	return NewRestAPIError(http.StatusTooManyRequests, c.ClientErrCodeTooManyRequests, message, entities, rootCause)
+}
+
 func NewRestAPIErrInternal(rootCause error, entities ...string) *RestAPIError {
 	return NewRestAPIError(http.StatusInternalServerError, c.ClientErrCodeInternal, c.ClientErrMsgInternal, entities, rootCause)
 }

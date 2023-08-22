@@ -40,6 +40,10 @@ const (
 	ClientErrCodeAlreadyExists = 4091
 	ClientErrMsgAlreadyExists  = "Data already exists"
 
+	//HTTP 429 - Too Many Requests
+	ClientErrCodeTooManyRequests = 4290
+	ClientErrMsgTooManyRequests  = "Too many requests"
+
 	//HTTP 500 - Internal Server Error
 	ClientErrCodeInternal = 5000
 	ClientErrMsgInternal  = "Internal Server Error"
